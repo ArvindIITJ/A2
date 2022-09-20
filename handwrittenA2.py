@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[17]:
+# In[31]:
 
 
 # Standard scientific Python imports
@@ -17,6 +17,12 @@ from skimage.transform import rescale, resize, downscale_local_mean
 
 import pandas as pd
 digits = datasets.load_digits()
+data = digits.images.reshape((n_samples, -1))
+print("---Digits--")
+plt.figure(1, figsize=(3, 3))
+plt.imshow(digits.images[0], cmap=plt.cm.gray_r, interpolation="nearest")
+plt.show()
+print(digits.images[0].size)
 
 _, axes = plt.subplots(nrows=1, ncols=4, figsize=(10, 3))
 for ax, image, label in zip(axes, digits.images, digits.target):
@@ -46,7 +52,7 @@ X_train, X_dev, y_train, y_dev = train_test_split(
 )
 
 
-# In[19]:
+# In[32]:
 
 
 df =pd.DataFrame()
@@ -80,7 +86,7 @@ df['Accuracy'] = accuracy
 df
 
 
-# In[20]:
+# In[33]:
 
 
 from PIL import Image
@@ -98,7 +104,7 @@ for ax, image, prediction in zip(axes, X_test, predicted):
     print("the image with the size" f"Prediction: {prediction}" f"image_resized :{image_resized}\n")
 
 
-# In[22]:
+# In[34]:
 
 
 a= df['Accuracy']
@@ -106,4 +112,10 @@ maximum = a.max()
 index = a.idxmax()
 
 print("The best test score is ", maximum," corresponding to hyperparameters gamma= ",g[index]," C=",cc[index])
+
+
+# In[ ]:
+
+
+
 
